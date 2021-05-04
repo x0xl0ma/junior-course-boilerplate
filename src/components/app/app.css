@@ -1,0 +1,9 @@
+.app-container {
+  width: 100%;
+  max-width: 796px;
+  padding: 30px 30px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Open Sans", sans-serif;
+}

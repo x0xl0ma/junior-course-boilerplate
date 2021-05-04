@@ -6,10 +6,10 @@ import './productsList.css';
 
 const ProductsList = ({ items }) => {
   return (
-    <div className="products-list">
+    <ul className="products-list">
       {items.length > 0 ? (
         items.map(item => (
-          <div className="product-wrapper">
+          <li className="product-wrapper">
             <ProductItem
               isInStock={item.isInStock}
               img={item.img}
@@ -21,12 +21,12 @@ const ProductsList = ({ items }) => {
               ratingComponent={Rating}
               key={item.id}
             />
-          </div>
+          </li>
         ))
       ) : (
         <span>Товары не загружены</span>
       )}
-    </div>
+    </ul>
   );
 };
 

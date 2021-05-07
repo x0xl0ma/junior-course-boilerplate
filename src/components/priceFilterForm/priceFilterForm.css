@@ -1,0 +1,16 @@
+.priceForm {
+  margin-right: 30px;
+}
+
+.priceFormTitle {
+  color: #323c48;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.priceInputWrapper {
+  margin-bottom: 24px;
+}
+.priceFormInput {
+  margin-left: 16px;
+}

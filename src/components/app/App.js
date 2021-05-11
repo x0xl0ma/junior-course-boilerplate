@@ -9,10 +9,9 @@ import products from '../../products.json';
 import './app.css';
 
 class App extends LogRenderer {
-  state = { items: [], priceMin: 0, priceMax: 10000000 };
-
-  componentDidMount() {
-    this.setState({ items: products });
+  constructor(props) {
+    super(props);
+    this.state = { items: products, priceMin: 0, priceMax: 10000000 };
   }
 
   priceInputHandler = e => {
@@ -28,9 +27,9 @@ class App extends LogRenderer {
       return;
     }
 
-    const filteredItems = this.state.items
-      .filter(item => item.price >= priceMin)
-      .filter(item => item.price <= priceMax);
+    const filteredItems = this.state.items.filter(
+      item => item.price >= priceMin && item.price <= priceMax
+    );
 
     this.setState({ items: filteredItems });
   };

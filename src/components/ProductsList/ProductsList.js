@@ -33,8 +33,4 @@ class ProductsList extends LogRenderer {
   }
 }
 
-// const ProductsList = ({ items }) => {
-
-// };
-
 export default ProductsList;

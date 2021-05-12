@@ -1,21 +1,14 @@
 import React from 'react';
-import clsx from 'classnames';
+import LogRenderer from '../logRenderer/LogRenderer';
 
 import './priceInput.css';
-import LogRenderer from '../logRenderer/LogRenderer';
 
 class PriceInput extends LogRenderer {
   render() {
-    const {
-      label,
-      inputName,
-      inputHandler,
-      inputValue,
-      additionalClasses = ''
-    } = this.props;
+    const { label, inputName, inputHandler, inputValue } = this.props;
 
     return (
-      <label className={clsx('price-input-label', additionalClasses)}>
+      <label className="price-input-label">
         {label}
         <input
           type="text"

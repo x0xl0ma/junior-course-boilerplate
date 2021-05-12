@@ -1,16 +1,17 @@
-.priceForm {
+.price-form {
   margin-right: 30px;
 }
 
-.priceFormTitle {
+.price-form-title {
   color: #323c48;
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
-.priceInputWrapper {
+.price-input-wrapper {
   margin-bottom: 24px;
 }
-.priceFormInput {
+.price-form-input {
+  display: inline-block;
   margin-left: 16px;
 }

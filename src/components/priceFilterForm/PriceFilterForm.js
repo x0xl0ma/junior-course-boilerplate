@@ -9,10 +9,10 @@ class PriceForm extends LogRenderer {
   render() {
     const { inputHandler, priceMin, priceMax, buttonHandler } = this.props;
     return (
-      <form className="priceForm" onSubmit={buttonHandler}>
-        <h3 className="priceFormTitle">Цена</h3>
+      <form className="price-form" onSubmit={buttonHandler}>
+        <h3 className="price-form-title">Цена</h3>
 
-        <div className="priceInputWrapper">
+        <div className="price-input-wrapper">
           <PriceInput
             label="от"
             inputName="priceMin"
@@ -20,13 +20,14 @@ class PriceForm extends LogRenderer {
             inputValue={priceMin}
           />
 
-          <PriceInput
-            label="до"
-            inputName="priceMax"
-            inputHandler={inputHandler}
-            inputValue={priceMax}
-            additionalClasses="priceFormInput"
-          />
+          <div className="price-form-input">
+            <PriceInput
+              label="до"
+              inputName="priceMax"
+              inputHandler={inputHandler}
+              inputValue={priceMax}
+            />
+          </div>
         </div>
 
         <Button text="Применить" />

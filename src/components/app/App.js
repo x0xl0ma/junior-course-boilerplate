@@ -1,20 +1,57 @@
-import React, { useState } from 'react';
+import React from 'react';
+import LogRenderer from '../logRenderer/LogRenderer';
 import ProductsTitle from '../ProductsTitle/ProductsHeader';
 import ProductsList from '../ProductsList/ProductsList';
+import PriceForm from '../priceFilterForm/PriceFilterForm';
 
 import products from '../../products.json';
 
 import './app.css';
 
-const App = () => {
-  const [items] = useState(products || []);
+class App extends LogRenderer {
+  constructor(props) {
+    super(props);
+    this.state = { items: products, priceMin: 0, priceMax: 10000000 };
+  }
 
-  return (
-    <main className="app-container">
-      <ProductsTitle />
-      <ProductsList items={items} />
-    </main>
-  );
-};
+  priceInputHandler = e => {
+    this.setState({ [e.target.name]: Number(e.target.value) });
+  };
+
+  priceButtonHandler = e => {
+    e.preventDefault();
+
+    const { priceMin, priceMax } = this.state;
+
+    if (priceMin < 0 || priceMax < 0) {
+      return;
+    }
+
+    const filteredItems = this.state.items.filter(
+      item => item.price >= priceMin && item.price <= priceMax
+    );
+
+    this.setState({ items: filteredItems });
+  };
+
+  render() {
+    const { priceMin, priceMax, items } = this.state;
+
+    return (
+      <main className="app-container">
+        <ProductsTitle />
+        <div className="products-wrapper">
+          <PriceForm
+            inputHandler={this.priceInputHandler}
+            priceMin={priceMin}
+            priceMax={priceMax}
+            buttonHandler={this.priceButtonHandler}
+          />
+          <ProductsList items={items} />
+        </div>
+      </main>
+    );
+  }
+}
 
 export default App;

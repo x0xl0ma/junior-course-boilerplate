@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Название первого товара",
-    "price": "23 000 ₽",
+    "price": 15000,
     "subPriceContent": "",
     "img": "/images/product1.png",
     "rating": 4,
@@ -13,7 +13,7 @@
   {
     "id": 2,
     "name": "Название второго товара",
-    "price": "23 000 ₽",
+    "price": 17000,
     "subPriceContent": "",
     "img": "/images/product2.png",
     "rating": 4,
@@ -24,7 +24,7 @@
   {
     "id": 3,
     "name": "Название третьего товара",
-    "price": "23 000 ₽",
+    "price": 20000,
     "subPriceContent": "",
     "img": "/images/product3.png",
     "rating": 4,
@@ -35,7 +35,7 @@
   {
     "id": 4,
     "name": "Название четвертого товара",
-    "price": "23 000 ₽",
+    "price": 23000,
     "subPriceContent": "",
     "img": "/images/product4.png",
     "rating": 4,
@@ -46,7 +46,7 @@
   {
     "id": 5,
     "name": "Название пятого товара",
-    "price": "23 000 ₽",
+    "price": 25000,
     "subPriceContent": "",
     "img": "/images/product5.png",
     "rating": 4,
@@ -57,7 +57,7 @@
   {
     "id": 6,
     "name": "Название шестого товара",
-    "price": "23 000 ₽",
+    "price": 28000,
     "subPriceContent": "",
     "img": "/images/product6.png",
     "rating": 4,

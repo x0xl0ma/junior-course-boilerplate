@@ -11,31 +11,24 @@ import './app.css';
 class App extends LogRenderer {
   constructor(props) {
     super(props);
-    this.state = { items: products, priceMin: 0, priceMax: 10000000 };
+    this.state = {
+      items: products,
+      priceMin: 0,
+      priceMax: 10000000,
+      discount: 0
+    };
   }
 
   priceInputHandler = e => {
     this.setState({ [e.target.name]: Number(e.target.value) });
   };
 
-  priceButtonHandler = e => {
-    e.preventDefault();
-
-    const { priceMin, priceMax } = this.state;
-
-    if (priceMin < 0 || priceMax < 0) {
-      return;
-    }
-
-    const filteredItems = this.state.items.filter(
-      item => item.price >= priceMin && item.price <= priceMax
-    );
-
-    this.setState({ items: filteredItems });
-  };
-
   render() {
-    const { priceMin, priceMax, items } = this.state;
+    const { priceMin, priceMax, discount } = this.state;
+
+    const filteredItems = this.state.items
+      .filter(item => item.price >= priceMin && item.price <= priceMax)
+      .filter(item => (discount ? item.discount === discount : true));
 
     return (
       <main className="app-container">
@@ -45,9 +38,9 @@ class App extends LogRenderer {
             inputHandler={this.priceInputHandler}
             priceMin={priceMin}
             priceMax={priceMax}
-            buttonHandler={this.priceButtonHandler}
+            discount={discount}
           />
-          <ProductsList items={items} />
+          <ProductsList items={filteredItems} />
         </div>
       </main>
     );

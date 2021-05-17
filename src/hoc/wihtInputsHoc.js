@@ -9,6 +9,10 @@ const withInputHoc = WrappedComponent => {
 
       const valueAfterCheck = regForValue.test(value);
 
+      if (!valueAfterCheck) {
+        return;
+      }
+
       this.props.onChange(e, valueAfterCheck);
     };
 

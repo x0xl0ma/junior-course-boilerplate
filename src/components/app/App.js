@@ -3,6 +3,7 @@ import LogRenderer from '../logRenderer/LogRenderer';
 import ProductsTitle from '../ProductsTitle/ProductsHeader';
 import ProductsList from '../ProductsList/ProductsList';
 import PriceForm from '../priceFilterForm/PriceFilterForm';
+import { maxBy, minBy } from 'csssr-school-utils';
 
 import products from '../../products.json';
 
@@ -13,8 +14,8 @@ class App extends LogRenderer {
     super(props);
     this.state = {
       items: products,
-      priceMin: 0,
-      priceMax: 10000000,
+      priceMin: minBy(product => product.price, products).price,
+      priceMax: maxBy(product => product.price, products).price,
       discount: 0
     };
   }
@@ -24,11 +25,13 @@ class App extends LogRenderer {
   };
 
   render() {
-    const { priceMin, priceMax, discount } = this.state;
+    const { priceMin, priceMax, discount, items } = this.state;
 
-    const filteredItems = this.state.items
-      .filter(item => item.price >= priceMin && item.price <= priceMax)
-      .filter(item => (discount ? item.discount === discount : true));
+    const filteredItems = items.filter(item =>
+      item.price >= priceMin && item.price <= priceMax && discount
+        ? item.discount === discount
+        : true
+    );
 
     return (
       <main className="app-container">

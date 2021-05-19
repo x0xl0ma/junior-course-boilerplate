@@ -27,10 +27,11 @@ class App extends LogRenderer {
   render() {
     const { priceMin, priceMax, discount, items } = this.state;
 
-    const filteredItems = items.filter(item =>
-      item.price >= priceMin && item.price <= priceMax && discount
-        ? item.discount === discount
-        : true
+    const filteredItems = items.filter(
+      item =>
+        item.price >= priceMin &&
+        item.price <= priceMax &&
+        (discount ? item.discount === discount : true)
     );
 
     return (

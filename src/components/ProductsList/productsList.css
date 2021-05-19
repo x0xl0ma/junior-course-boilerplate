@@ -1,5 +1,6 @@
 .products-list {
   max-width: 796px;
+  min-width: 600px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -13,4 +14,8 @@
   margin-left: 15px;
   margin-right: 15px;
   margin-bottom: 50px;
+}
+
+.products-list-error {
+  margin-top: 50px;
 }

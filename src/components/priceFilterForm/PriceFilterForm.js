@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../button/Button';
+import DiscountInput from '../discountInput/DiscountInput';
 import LogRenderer from '../logRenderer/LogRenderer';
 import PriceInput from '../priceInput/PriceInput';
 
@@ -7,30 +7,37 @@ import './priceFilterForm.css';
 
 class PriceForm extends LogRenderer {
   render() {
-    const { inputHandler, priceMin, priceMax, buttonHandler } = this.props;
+    const { inputHandler, priceMin, priceMax, discount } = this.props;
     return (
-      <form className="price-form" onSubmit={buttonHandler}>
+      <form className="price-form">
         <h3 className="price-form-title">Цена</h3>
 
         <div className="price-input-wrapper">
           <PriceInput
             label="от"
-            inputName="priceMin"
-            inputHandler={inputHandler}
-            inputValue={priceMin}
+            name="priceMin"
+            onChange={inputHandler}
+            value={priceMin}
           />
 
           <div className="price-form-input">
             <PriceInput
               label="до"
-              inputName="priceMax"
-              inputHandler={inputHandler}
-              inputValue={priceMax}
+              name="priceMax"
+              onChange={inputHandler}
+              value={priceMax}
             />
           </div>
         </div>
 
-        <Button text="Применить" />
+        <DiscountInput
+          title="Скидка"
+          name="discount"
+          value={discount}
+          onChange={inputHandler}
+        />
+
+        {/* <Button text="Применить" /> */}
       </form>
     );
   }

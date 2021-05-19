@@ -26,7 +26,7 @@ class ProductsList extends LogRenderer {
             </li>
           ))
         ) : (
-          <span>Товары не загружены</span>
+          <span className="products-list-error">Товары не загружены</span>
         )}
       </ul>
     );

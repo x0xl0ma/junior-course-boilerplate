@@ -1,0 +1,22 @@
+.category {
+  padding: 8px 16px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  border: 1px solid #7e8fa4;
+  color: #7e8d9e;
+  background: #ffffff;
+  font-size: 1rem;
+  line-height: 1rem;
+  transition: ease-in 0.3s;
+  cursor: pointer;
+}
+
+.category:hover {
+  background: #7e8d9e;
+  color: #ffffff;
+}
+
+.selected {
+  background: #323c48;
+  color: #ffffff;
+}

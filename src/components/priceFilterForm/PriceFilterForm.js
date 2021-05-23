@@ -1,44 +1,76 @@
-import React from 'react';
-import DiscountInput from '../discountInput/DiscountInput';
-import LogRenderer from '../logRenderer/LogRenderer';
-import PriceInput from '../priceInput/PriceInput';
+import React from "react";
+import Category from "../category/Category";
+import DiscountInput from "../discountInput/DiscountInput";
+import LogRenderer from "../logRenderer/LogRenderer";
+import PriceInput from "../priceInput/PriceInput";
+import Button from "../button/Button";
 
-import './priceFilterForm.css';
+import { Context } from "../app/App";
+
+import "./priceFilterForm.css";
 
 class PriceForm extends LogRenderer {
   render() {
-    const { inputHandler, priceMin, priceMax, discount } = this.props;
+    const { inputHandler, categoryHandler, resetFiltersHandler } = this.props;
+
     return (
-      <form className="price-form">
-        <h3 className="price-form-title">Цена</h3>
+      <Context.Consumer>
+        {value => {
+          return (
+            <form className="price-form">
+              <h3 className="price-form-title">Цена</h3>
 
-        <div className="price-input-wrapper">
-          <PriceInput
-            label="от"
-            name="priceMin"
-            onChange={inputHandler}
-            value={priceMin}
-          />
+              <div className="price-input-wrapper">
+                <PriceInput
+                  label="от"
+                  name="priceMin"
+                  onChange={inputHandler}
+                  value={value.priceMin}
+                />
 
-          <div className="price-form-input">
-            <PriceInput
-              label="до"
-              name="priceMax"
-              onChange={inputHandler}
-              value={priceMax}
-            />
-          </div>
-        </div>
+                <div className="price-form-input">
+                  <PriceInput
+                    label="до"
+                    name="priceMax"
+                    onChange={inputHandler}
+                    value={value.priceMax}
+                  />
+                </div>
+              </div>
 
-        <DiscountInput
-          title="Скидка"
-          name="discount"
-          value={discount}
-          onChange={inputHandler}
-        />
+              <DiscountInput
+                title="Скидка"
+                name="discount"
+                value={value.discount}
+                onChange={inputHandler}
+              />
 
-        {/* <Button text="Применить" /> */}
-      </form>
+              <div className="price-form-categories">
+                <h3 className="price-form-title">Категории</h3>
+
+                <Category
+                  name="books"
+                  selectedCategory={value.selectedCategory}
+                  categoryHandler={categoryHandler}
+                />
+
+                <div className="price-form-input">
+                  <Category
+                    name="clothes"
+                    selectedCategory={value.selectedCategory}
+                    categoryHandler={categoryHandler}
+                  />
+                </div>
+              </div>
+
+              <Button
+                text="Сбросить фильтры"
+                buttonHandler={resetFiltersHandler}
+              />
+            </form>
+          );
+        }}
+      </Context.Consumer>
     );
   }
 }

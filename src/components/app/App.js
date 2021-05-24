@@ -23,6 +23,13 @@ class App extends LogRenderer {
     };
   }
 
+  componentDidMount() {
+    const categoryFromUrl = window.location.search
+      ? window.location.search.split("=").pop()
+      : null;
+    this.setState({ ...this.state, selectedCategory: categoryFromUrl });
+  }
+
   priceInputHandler = e => {
     this.setState({ [e.target.name]: Number(e.target.value) });
   };
@@ -30,6 +37,7 @@ class App extends LogRenderer {
   categoryHandler = (e, categoryName) => {
     e.preventDefault();
     this.setState({ ...this.state, selectedCategory: categoryName });
+    window.history.pushState(null, "category", `?category=${categoryName}`);
   };
 
   resetFiltersHandler = e => {
@@ -41,6 +49,7 @@ class App extends LogRenderer {
       discount: 0,
       selectedCategory: null
     });
+    window.history.pushState(null, "best shop", "/");
   };
 
   render() {

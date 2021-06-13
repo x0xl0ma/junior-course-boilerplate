@@ -1,18 +1,18 @@
-import React from 'react';
-import ProductItem from 'csssr-school-product-card';
-import LogRenderer from '../logRenderer/LogRenderer';
-import Rating from '../rating/Rating';
+import React from "react";
+import ProductItem from "csssr-school-product-card";
+import LogRenderer from "../logRenderer/LogRenderer";
+import Rating from "../rating/Rating";
 
-import './productsList.css';
+import styles from "./productsList.module.css";
 
 class ProductsList extends LogRenderer {
   render() {
     const { items } = this.props;
     return (
-      <ul className="products-list">
+      <ul className={styles.products_list}>
         {items.length > 0 ? (
           items.map(item => (
-            <li className="product-wrapper" key={item.id}>
+            <li className={styles.product_wrapper} key={item.id}>
               <ProductItem
                 isInStock={item.isInStock}
                 img={item.img}
@@ -26,7 +26,9 @@ class ProductsList extends LogRenderer {
             </li>
           ))
         ) : (
-          <span className="products-list-error">Товары не загружены</span>
+          <span className={styles.products_list_error}>
+            Товары не загружены
+          </span>
         )}
       </ul>
     );

@@ -7,7 +7,7 @@ import { maxBy, minBy } from "csssr-school-utils";
 
 import products from "../../products.json";
 
-import "./app.css";
+import styles from "./app.module.css";
 
 export const Context = createContext({});
 
@@ -28,7 +28,19 @@ class App extends LogRenderer {
       ? window.location.search.split("=").pop()
       : null;
     this.setState({ ...this.state, selectedCategory: categoryFromUrl });
+
+    window.addEventListener("popstate", this.setFromHistory);
   }
+
+  componentWillUnmount = () => {
+    window.removeEventListener("popstate", this.setFromHistory);
+  };
+
+  setFromHistory = e => {
+    const categoryFromState = e.state.categoryName || null;
+
+    this.setState({ ...this.state, selectedCategory: categoryFromState });
+  };
 
   priceInputHandler = e => {
     this.setState({ [e.target.name]: Number(e.target.value) });
@@ -36,8 +48,14 @@ class App extends LogRenderer {
 
   categoryHandler = (e, categoryName) => {
     e.preventDefault();
+
     this.setState({ ...this.state, selectedCategory: categoryName });
-    window.history.pushState(null, "category", `?category=${categoryName}`);
+
+    window.history.pushState(
+      { categoryName },
+      "category",
+      `?category=${categoryName}`
+    );
   };
 
   resetFiltersHandler = e => {
@@ -71,9 +89,9 @@ class App extends LogRenderer {
 
     return (
       <Context.Provider value={this.state}>
-        <main className="app-container">
+        <main className={styles.app_container}>
           <ProductsTitle />
-          <div className="products-wrapper">
+          <div className={styles.products_wrapper}>
             <PriceForm
               inputHandler={this.priceInputHandler}
               categoryHandler={this.categoryHandler}

@@ -1,17 +1,17 @@
-import React from 'react';
-import withInputHoc from '../../hoc/wihtInputsHoc';
-import LogRenderer from '../logRenderer/LogRenderer';
+import React from "react";
+import withInputHoc from "../../hoc/wihtInputsHoc";
+import LogRenderer from "../logRenderer/LogRenderer";
 
-import './priceInput.css';
+import styles from "./priceInput.module.css";
 
 class PriceInput extends LogRenderer {
   render() {
     const { label } = this.props;
 
     return (
-      <label className="price-input-label">
+      <label className={styles.price_input_label}>
         {label}
-        <input type="text" {...this.props} className="price-input" />
+        <input type="text" {...this.props} className={styles.price_input} />
       </label>
     );
   }

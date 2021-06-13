@@ -7,7 +7,7 @@ import Button from "../button/Button";
 
 import { Context } from "../app/App";
 
-import "./priceFilterForm.css";
+import styles from "./priceFilterForm.module.css";
 
 class PriceForm extends LogRenderer {
   render() {
@@ -15,25 +15,25 @@ class PriceForm extends LogRenderer {
 
     return (
       <Context.Consumer>
-        {value => {
+        {filterData => {
           return (
-            <form className="price-form">
-              <h3 className="price-form-title">Цена</h3>
+            <form className={styles.priceForm}>
+              <h3 className={styles.priceForm_title}>Цена</h3>
 
-              <div className="price-input-wrapper">
+              <div className={styles.price_input_wrapper}>
                 <PriceInput
                   label="от"
                   name="priceMin"
                   onChange={inputHandler}
-                  value={value.priceMin}
+                  value={filterData.priceMin}
                 />
 
-                <div className="price-form-input">
+                <div className={styles.price_form_input}>
                   <PriceInput
                     label="до"
                     name="priceMax"
                     onChange={inputHandler}
-                    value={value.priceMax}
+                    value={filterData.priceMax}
                   />
                 </div>
               </div>
@@ -41,23 +41,23 @@ class PriceForm extends LogRenderer {
               <DiscountInput
                 title="Скидка"
                 name="discount"
-                value={value.discount}
+                value={filterData.discount}
                 onChange={inputHandler}
               />
 
-              <div className="price-form-categories">
-                <h3 className="price-form-title">Категории</h3>
+              <div className={styles.price_form_categories}>
+                <h3 className={styles.price_form_title}>Категории</h3>
 
                 <Category
                   name="books"
-                  selectedCategory={value.selectedCategory}
+                  selectedCategory={filterData.selectedCategory}
                   categoryHandler={categoryHandler}
                 />
 
-                <div className="price-form-input">
+                <div className={styles.price_form_input}>
                   <Category
                     name="clothes"
-                    selectedCategory={value.selectedCategory}
+                    selectedCategory={filterData.selectedCategory}
                     categoryHandler={categoryHandler}
                   />
                 </div>

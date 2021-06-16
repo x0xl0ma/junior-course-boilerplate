@@ -65,6 +65,7 @@ class PriceForm extends LogRenderer {
 
               <Button
                 text="Сбросить фильтры"
+                classes={styles.simple_button}
                 buttonHandler={resetFiltersHandler}
               />
             </form>

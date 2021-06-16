@@ -10,21 +10,21 @@ class Category extends LogRenderer {
     const { name, selectedCategory, categoryHandler } = this.props;
 
     return (
-      <button
-        onClick={e => categoryHandler(e, name)}
-        className={clsx(styles.category, {
-          [styles.selected]: selectedCategory === name
-        })}
-      >
-        {name}
-      </button>
-      // <Button
-      //   text={name}
-      //   buttonHandler={e => categoryHandler(e, name)}
-      //   classes={clsx(styles.category, {
-      //     [styles.selected]: selectedCategory === name
+      // <button
+      //   onClick={e => categoryHandler(e, name)}
+      //   className={clsx(styles.category, {
+      //     [styles.selected]: selectedCategory.includes(name)
       //   })}
-      // />
+      // >
+      //   {name}
+      // </button>
+      <Button
+        text={name}
+        buttonHandler={e => categoryHandler(e, name)}
+        classes={clsx(styles.category, {
+          [styles.selected]: selectedCategory.includes(name)
+        })}
+      />
     );
   }
 }

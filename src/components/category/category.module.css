@@ -11,10 +11,10 @@
   cursor: pointer;
 }
 
-/* .category:hover {
+.category:hover {
   background: #7e8d9e;
   color: #ffffff;
-} */
+}
 
 .selected {
   background: #323c48;

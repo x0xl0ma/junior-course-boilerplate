@@ -19,15 +19,19 @@ class App extends LogRenderer {
       priceMin: minBy(product => product.price, products).price,
       priceMax: maxBy(product => product.price, products).price,
       discount: 0,
-      selectedCategory: null
+      selectedCategory: []
     };
   }
 
   componentDidMount() {
-    const categoryFromUrl = window.location.search
-      ? window.location.search.split("=").pop()
-      : null;
-    this.setState({ ...this.state, selectedCategory: categoryFromUrl });
+    const [, categoriesFromUrl] = window.location.search.split("=");
+    const selectedCategory = categoriesFromUrl
+      ? categoriesFromUrl.split(",")
+      : [];
+    this.setState({
+      ...this.state,
+      selectedCategory
+    });
 
     window.addEventListener("popstate", this.setFromHistory);
   }
@@ -37,7 +41,7 @@ class App extends LogRenderer {
   };
 
   setFromHistory = e => {
-    const categoryFromState = e.state.categoryName || null;
+    const categoryFromState = e.state ? e.state.categoryName : [];
 
     this.setState({ ...this.state, selectedCategory: categoryFromState });
   };
@@ -48,13 +52,28 @@ class App extends LogRenderer {
 
   categoryHandler = (e, categoryName) => {
     e.preventDefault();
+    let newSelectedCategories;
 
-    this.setState({ ...this.state, selectedCategory: categoryName });
+    if (this.state.selectedCategory.includes(categoryName)) {
+      newSelectedCategories = this.state.selectedCategory.filter(
+        c => c !== categoryName
+      );
+    } else {
+      newSelectedCategories = [...this.state.selectedCategory, categoryName];
+    }
 
+    const categoryForUrl = newSelectedCategories.length
+      ? `?categories=${newSelectedCategories.join(",")}`
+      : "/";
+
+    this.setState(prev => ({
+      ...prev,
+      selectedCategory: newSelectedCategories
+    }));
     window.history.pushState(
-      { categoryName },
+      { categoryName: newSelectedCategories },
       "category",
-      `?category=${categoryName}`
+      categoryForUrl
     );
   };
 
@@ -65,9 +84,9 @@ class App extends LogRenderer {
       priceMin: minBy(product => product.price, products).price,
       priceMax: maxBy(product => product.price, products).price,
       discount: 0,
-      selectedCategory: null
+      selectedCategory: []
     });
-    window.history.pushState(null, "best shop", "/");
+    window.history.pushState(null, "best-shop", "/");
   };
 
   render() {
@@ -84,7 +103,9 @@ class App extends LogRenderer {
         item.price >= priceMin &&
         item.price <= priceMax &&
         (discount ? item.discount === discount : true) &&
-        (selectedCategory ? item.category === selectedCategory : true)
+        (selectedCategory.length
+          ? selectedCategory.includes(item.category)
+          : true)
     );
 
     return (

@@ -1,13 +1,27 @@
-import React from "react";
-import LogRenderer from "../logRenderer/LogRenderer";
+import React from 'react';
+import clsx from 'classnames';
+import LogRenderer from '../logRenderer/LogRenderer';
+
+import styles from './button.module.css';
+
+const buttonTypes = {
+  category: styles.category_button,
+  simple: styles.simple_button
+};
 
 class Button extends LogRenderer {
   render() {
-    const { text, buttonHandler, classes } = this.props;
+    const { children, buttonHandler, buttonType, isSelected } = this.props;
 
     return (
-      <button className={classes} onClick={buttonHandler} type="button">
-        {text}
+      <button
+        className={clsx(styles.root_button, buttonTypes[buttonType], {
+          [styles.selected]: isSelected
+        })}
+        onClick={buttonHandler}
+        type="button"
+      >
+        {children}
       </button>
     );
   }

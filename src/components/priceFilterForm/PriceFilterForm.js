@@ -1,13 +1,12 @@
-import React from "react";
-import Category from "../category/Category";
-import DiscountInput from "../discountInput/DiscountInput";
-import LogRenderer from "../logRenderer/LogRenderer";
-import PriceInput from "../priceInput/PriceInput";
-import Button from "../button/Button";
+import React from 'react';
+import DiscountInput from '../discountInput/DiscountInput';
+import LogRenderer from '../logRenderer/LogRenderer';
+import PriceInput from '../priceInput/PriceInput';
+import Button from '../button/Button';
 
-import { Context } from "../app/App";
+import { Context } from '../app/App';
 
-import styles from "./priceFilterForm.module.css";
+import styles from './priceFilterForm.module.css';
 
 class PriceForm extends LogRenderer {
   render() {
@@ -48,26 +47,28 @@ class PriceForm extends LogRenderer {
               <div className={styles.price_form_categories}>
                 <h3 className={styles.price_form_title}>Категории</h3>
 
-                <Category
-                  name="books"
-                  selectedCategory={filterData.selectedCategory}
-                  categoryHandler={categoryHandler}
-                />
+                <Button
+                  isSelected={filterData.selectedCategory.includes('books')}
+                  buttonHandler={e => categoryHandler(e, 'books')}
+                  buttonType="category"
+                >
+                  books
+                </Button>
 
                 <div className={styles.price_form_input}>
-                  <Category
-                    name="clothes"
-                    selectedCategory={filterData.selectedCategory}
-                    categoryHandler={categoryHandler}
-                  />
+                  <Button
+                    isSelected={filterData.selectedCategory.includes('clothes')}
+                    buttonHandler={e => categoryHandler(e, 'clothes')}
+                    buttonType="category"
+                  >
+                    clothes
+                  </Button>
                 </div>
               </div>
 
-              <Button
-                text="Сбросить фильтры"
-                classes={styles.simple_button}
-                buttonHandler={resetFiltersHandler}
-              />
+              <Button buttonHandler={resetFiltersHandler} buttonType="simple">
+                Сбросить фильтры
+              </Button>
             </form>
           );
         }}

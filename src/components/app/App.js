@@ -51,15 +51,14 @@ class App extends LogRenderer {
   };
 
   categoryHandler = (e, categoryName) => {
-    e.preventDefault();
     let newSelectedCategories;
 
-    if (this.state.selectedCategory.includes(categoryName)) {
+    if (e.target.checked) {
+      newSelectedCategories = [...this.state.selectedCategory, categoryName];
+    } else {
       newSelectedCategories = this.state.selectedCategory.filter(
         c => c !== categoryName
       );
-    } else {
-      newSelectedCategories = [...this.state.selectedCategory, categoryName];
     }
 
     const categoryForUrl = newSelectedCategories.length

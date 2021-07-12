@@ -17,15 +17,3 @@
   padding: 9px 63px;
   border: 1px solid #323c48;
 }
-
-.category_button {
-  padding: 8px 16px;
-  border-radius: 15px;
-  border: 1px solid #7e8fa4;
-  color: #7e8d9e;
-}
-
-.selected {
-  background: #323c48;
-  color: #ffffff;
-}

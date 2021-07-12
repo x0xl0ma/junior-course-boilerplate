@@ -1,12 +1,13 @@
-import React from 'react';
-import DiscountInput from '../discountInput/DiscountInput';
-import LogRenderer from '../logRenderer/LogRenderer';
-import PriceInput from '../priceInput/PriceInput';
-import Button from '../button/Button';
+import React from "react";
+import DiscountInput from "../discountInput/DiscountInput";
+import LogRenderer from "../logRenderer/LogRenderer";
+import PriceInput from "../priceInput/PriceInput";
+import Button from "../button/Button";
 
-import { Context } from '../app/App';
+import { Context } from "../app/App";
 
-import styles from './priceFilterForm.module.css';
+import styles from "./priceFilterForm.module.css";
+import Category from "../category/Category";
 
 class PriceForm extends LogRenderer {
   render() {
@@ -47,22 +48,18 @@ class PriceForm extends LogRenderer {
               <div className={styles.price_form_categories}>
                 <h3 className={styles.price_form_title}>Категории</h3>
 
-                <Button
-                  isSelected={filterData.selectedCategory.includes('books')}
-                  buttonHandler={e => categoryHandler(e, 'books')}
-                  buttonType="category"
-                >
-                  books
-                </Button>
+                <Category
+                  name="books"
+                  categoryHandler={categoryHandler}
+                  checked={filterData.selectedCategory.includes("books")}
+                />
 
                 <div className={styles.price_form_input}>
-                  <Button
-                    isSelected={filterData.selectedCategory.includes('clothes')}
-                    buttonHandler={e => categoryHandler(e, 'clothes')}
-                    buttonType="category"
-                  >
-                    clothes
-                  </Button>
+                  <Category
+                    name="clothes"
+                    categoryHandler={categoryHandler}
+                    checked={filterData.selectedCategory.includes("clothes")}
+                  />
                 </div>
               </div>
 

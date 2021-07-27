@@ -1,4 +1,4 @@
-.app-container {
+.app_container {
   width: 100%;
   padding: 30px 30px;
   box-sizing: border-box;
@@ -7,7 +7,7 @@
   font-family: "Open Sans", sans-serif;
 }
 
-.products-wrapper {
+.products_wrapper {
   display: flex;
   justify-content: center;
 }
